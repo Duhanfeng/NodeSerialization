@@ -26,11 +26,11 @@ private:
     template <typename Archive>
     void serialize(Archive& ar, const unsigned int version)
     {
-        ar& isEnable;
-        ar& guid;
-        ar& name;
-        ar& description;
-        ar& nodeID;
+        ar& BOOST_SERIALIZATION_NVP(isEnable);
+        ar& BOOST_SERIALIZATION_NVP(guid);
+        ar& BOOST_SERIALIZATION_NVP(name);
+        ar& BOOST_SERIALIZATION_NVP(description);
+        ar& BOOST_SERIALIZATION_NVP(nodeID);
     }
 
 };

@@ -11,6 +11,7 @@
 #include "node_A.h"
 #include "node_B.h"
 #include "node_C.h"
+#include "flowunit.h"
 
 using namespace std;
 
@@ -18,6 +19,16 @@ void test1();
 void test2();
 void test3();
 void test4();
+void test5();
+
+//#define serializeObj serializeBin
+//#define deserializeObj deserializeBin
+
+//#define serializeObj serializeText
+//#define deserializeObj deserializeText
+
+#define serializeObj serializeXml
+#define deserializeObj deserializeXml
 
 int main()
 {
@@ -36,6 +47,10 @@ int main()
     //测试智能指针(unique)
     std::cout << "test4...." << std::endl;
     test4();
+
+    //测试流程单元
+    std::cout << "test5...." << std::endl;
+    test5();
     
 	return 0;
 }
@@ -121,7 +136,6 @@ void test3()
 
 }
 
-
 //测试在智能指针下的类型
 void test4()
 {
@@ -141,5 +155,28 @@ void test4()
     std::unique_ptr<NodeBase> node31;
     deserializeObj(node31, "_4_3.pp");
     node31->run();
+
+}
+
+//测试流程单元
+void test5()
+{
+    std::shared_ptr<FlowUnit> flowUnit = std::make_shared<FlowUnit>();
+    flowUnit->nodes.emplace_back(std::make_unique<NodeC>());
+    flowUnit->nodes.emplace_back(std::make_unique<NodeC>());
+    flowUnit->nodes.emplace_back(std::make_unique<NodeA>());
+    flowUnit->nodes.emplace_back(std::make_unique<NodeC>());
+    flowUnit->nodes.emplace_back(std::make_unique<NodeB>());
+    flowUnit->nodes.emplace_back(std::make_unique<NodeA>());
+    flowUnit->nodes.emplace_back(std::make_unique<NodeA>());
+    flowUnit->run();
+
+    //保存
+    serializeObj(flowUnit, "_5_flowUnit.pp");
+
+    //重新加载
+    std::shared_ptr<FlowUnit> flowUnit2;
+    deserializeObj(flowUnit2, "_5_flowUnit.pp");
+    flowUnit2->run();
 
 }

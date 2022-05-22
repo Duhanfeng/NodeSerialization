@@ -23,6 +23,6 @@ endif()
 link_libraries(${BOOST_SERIALIZATION_LIB})
 
 # 将源代码添加到此项目的可执行文件。
-add_executable (NodeSerialization "main.cpp"  "serialization.h" "nodeBase.h" "node_A.h" "node_B.h" "node_C.h")
+add_executable (NodeSerialization "main.cpp"  "serialization.h" "nodeBase.h" "node_A.h" "node_B.h" "node_C.h" "flowunit.h")
 
 # TODO: 如有需要，请添加测试并安装目标。
