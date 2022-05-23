@@ -15,8 +15,10 @@
 #include "flowunit.h"
 #include <QEyeVisionLibrary/VisionFlow/variant/variant.h>
 #include <QEyeVisionLibrary/VisionFlow/Serialization/serialization.hpp>
+#include <QEyeVisionLibraryNode/Preprocess/smoothness/node.h>
+BOOST_CLASS_EXPORT(qv::SmoothnessNode)
 
-#include "qeyeTest.h"
+//#include "qeyeTest.h"
 
 using namespace std;
 
@@ -27,6 +29,7 @@ void test4();
 void test5();
 void test_remat();
 void test_var();
+void tesetNode1();
 
 //#define serializeObj serializeBin
 //#define deserializeObj deserializeBin
@@ -39,7 +42,7 @@ void test_var();
 
 int main()
 {
-    ////测试基准
+    //测试基准
     //std::cout << "test1...." << std::endl;
     //test1();
 
@@ -253,5 +256,20 @@ void test_var()
     deserializeObj(_var4, "_var_4.pp");
 
 
+
+}
+
+void tesetNode1()
+{
+    qv::NodeBase* node = new qv::SmoothnessNode();
+    node->nodeID = 9999;
+    std::cout << node->nodeID << std::endl;
+    std::cout << node->description << std::endl;
+    serializeXml(node, "_node.pp");
+    qv::NodeBase* node2;
+    deserializeXml(node2, "_node.pp");
+    std::cout << node2->nodeID << std::endl;
+    std::cout << node2->description << std::endl;
+    node2->runImage(rv::ReMat(), nullptr);
 
 }

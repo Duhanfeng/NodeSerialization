@@ -74,4 +74,5 @@ endif ()
 # 包含子项目。
 add_subdirectory ("ReVisionLib")
 add_subdirectory ("QEyeVisionLibrary")
+add_subdirectory ("QEyeVisionLibraryNode")
 add_subdirectory ("NodeSerialization")

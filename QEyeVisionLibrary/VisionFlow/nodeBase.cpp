@@ -153,3 +153,5 @@ Variant* qv::NodeBase::getOutputSource(const NodeParamDescription& output)
     }
 
 }
+
+BOOST_CLASS_EXPORT(qv::NodeBase)
