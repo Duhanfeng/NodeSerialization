@@ -60,14 +60,14 @@ NodeInfo qv::NodeBase::getInfo()
     return info;
 }
 
-void qv::NodeBase::setRegion(const rv::Region& _region, const Pose2D& pose)
+void qv::NodeBase::setRegion(const rv::Region& _region, const rv::Pose<double>& pose)
 {
     region = _region;
     srcPose = pose;
 
 }
 
-rv::Region qv::NodeBase::affineTransRegion(const Pose2D& dstPose)
+rv::Region qv::NodeBase::affineTransRegion(const rv::Pose<double>& dstPose)
 {
     if (!isEnableRefer)
     {
@@ -82,17 +82,17 @@ rv::Region qv::NodeBase::affineTransRegion(const Pose2D& dstPose)
     cv::RotatedRect rect = region.toCvRotatedRect();
 
     //目标坐标从srcPose->dstPose,计算其region仿射
-    cv::Mat matrix = rv::HomMat2D::vectorAngleToRigid(srcPose.point.x, srcPose.point.y, srcPose.theta, dstPose.point.x, dstPose.point.y, dstPose.theta);
+    cv::Mat matrix = rv::HomMat2D::vectorAngleToRigid(srcPose.center.x, srcPose.center.y, srcPose.angle, dstPose.center.x, dstPose.center.y, dstPose.angle);
     cv::Point2f newCenter;
     rv::HomMat2D::transformPoint2D(matrix, rect.center, newCenter);
 
-    cv::RotatedRect newRect(newCenter, rect.size, rect.angle + (float)rv::rad2deg(dstPose.theta - srcPose.theta));
+    cv::RotatedRect newRect(newCenter, rect.size, rect.angle + (float)rv::rad2deg(dstPose.angle - srcPose.angle));
 
     return rv::Region(newRect);
 }
 
 
-rv::Region qv::NodeBase::affineTransRegion(const rv::Region& _region, const Pose2D& dstPose)
+rv::Region qv::NodeBase::affineTransRegion(const rv::Region& _region, const rv::Pose<double>& dstPose)
 {
     if (!isEnableRefer)
     {
@@ -107,11 +107,11 @@ rv::Region qv::NodeBase::affineTransRegion(const rv::Region& _region, const Pose
     cv::RotatedRect rect = _region.toCvRotatedRect();
 
     //目标坐标从srcPose->dstPose,计算其region仿射
-    cv::Mat matrix = rv::HomMat2D::vectorAngleToRigid(srcPose.point.x, srcPose.point.y, srcPose.theta, dstPose.point.x, dstPose.point.y, dstPose.theta);
+    cv::Mat matrix = rv::HomMat2D::vectorAngleToRigid(srcPose.center.x, srcPose.center.y, srcPose.angle, dstPose.center.x, dstPose.center.y, dstPose.angle);
     cv::Point2f newCenter;
     rv::HomMat2D::transformPoint2D(matrix, rect.center, newCenter);
 
-    cv::RotatedRect newRect(newCenter, rect.size, rect.angle + (float)rv::rad2deg(dstPose.theta - srcPose.theta));
+    cv::RotatedRect newRect(newCenter, rect.size, rect.angle + (float)rv::rad2deg(dstPose.angle - srcPose.angle));
 
     return rv::Region(newRect);
 }

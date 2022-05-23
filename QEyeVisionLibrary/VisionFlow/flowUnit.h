@@ -2,7 +2,7 @@
 
 #include <ReVisionLib/revision.hpp>
 
-#include "variant.h"
+#include "variant/variant.h"
 #include "nodeBase.h"
 #include "nodeConnection.h"
 #include "resultOutput.h"

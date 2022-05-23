@@ -5,6 +5,7 @@
 #include <memory>
 
 #include <boost/serialization/serialization.hpp>
+#include <opencv2/opencv.hpp>
 
 #include "serialization.h"
 #include "nodeBase.h"
@@ -12,6 +13,8 @@
 #include "node_B.h"
 #include "node_C.h"
 #include "flowunit.h"
+#include <QEyeVisionLibrary/VisionFlow/variant/variant.h>
+#include <QEyeVisionLibrary/VisionFlow/Serialization/serialization.hpp>
 
 using namespace std;
 
@@ -20,6 +23,8 @@ void test2();
 void test3();
 void test4();
 void test5();
+void test_remat();
+void test_var();
 
 //#define serializeObj serializeBin
 //#define deserializeObj deserializeBin
@@ -51,16 +56,26 @@ int main()
     //测试流程单元
     std::cout << "test5...." << std::endl;
     test5();
+
+    //测试图片序列化
+    std::cout << "test_remat...." << std::endl;
+    test_remat();
+
+    //测试变量
+    std::cout << "test_var...." << std::endl;
+    test_var();
     
+    std::cout << "test finish" << std::endl;
+
 	return 0;
 }
 
 void test1()
 {
-    NodeBase* nodeBase = new NodeBase();
+    Node* nodeBase = new Node();
     nodeBase->nodeID = 1;
     serializeObj(nodeBase, "_1.pp");
-    NodeBase* nodeBase2 = new NodeBase();
+    Node* nodeBase2 = new Node();
     deserializeObj(nodeBase2, "_1.pp");
     cout << nodeBase2->nodeID << endl;
 
@@ -69,17 +84,17 @@ void test1()
 //基类与派生类测试
 void test2()
 {
-    NodeBase* node1 = new NodeA();
+    Node* node1 = new NodeA();
     node1->run();
     serializeObj(node1, "_2_1.pp");
-    NodeBase* node2 = new NodeB();
+    Node* node2 = new NodeB();
     node2->run();
     serializeObj(node2, "_2_2.pp");
-    NodeBase* node3 = new NodeC();
+    Node* node3 = new NodeC();
     node3->run();
     serializeObj(node3, "_2_3.pp");
 
-    NodeBase* node11 = new NodeBase();
+    Node* node11 = new Node();
     deserializeObj(node11, "_2_1.pp");
     if (node11 != nullptr)
     {
@@ -90,7 +105,7 @@ void test2()
         std::cout << "node11 is null" << std::endl;
     }
 
-    NodeBase* node21 = new NodeBase();
+    Node* node21 = new Node();
     deserializeObj(node21, "_2_2.pp");
     if (node21 != nullptr)
     {
@@ -101,7 +116,7 @@ void test2()
         std::cout << "node21 is null" << std::endl;
     }
 
-    NodeBase* node31 = new NodeBase();
+    Node* node31 = new Node();
     deserializeObj(node31, "_2_3.pp");
     if (node31 != nullptr)
     {
@@ -117,20 +132,20 @@ void test2()
 //测试在智能指针下的类型
 void test3()
 {
-    std::shared_ptr<NodeBase> node1 = std::make_shared<NodeA>();
+    std::shared_ptr<Node> node1 = std::make_shared<NodeA>();
     serializeObj(node1, "_3_1.pp");
-    std::shared_ptr<NodeBase> node2 = std::make_shared<NodeB>();
+    std::shared_ptr<Node> node2 = std::make_shared<NodeB>();
     serializeObj(node2, "_3_2.pp");
-    std::shared_ptr<NodeBase> node3 = std::make_shared<NodeC>();
+    std::shared_ptr<Node> node3 = std::make_shared<NodeC>();
     serializeObj(node3, "_3_3.pp");
     
-    std::shared_ptr<NodeBase> node11;
+    std::shared_ptr<Node> node11;
     deserializeObj(node11, "_3_1.pp");
     node11->run();
-    std::shared_ptr<NodeBase> node21;
+    std::shared_ptr<Node> node21;
     deserializeObj(node21, "_3_2.pp");
     node21->run();
-    std::shared_ptr<NodeBase> node31;
+    std::shared_ptr<Node> node31;
     deserializeObj(node31, "_3_3.pp");
     node31->run();
 
@@ -139,20 +154,20 @@ void test3()
 //测试在智能指针下的类型
 void test4()
 {
-    std::unique_ptr<NodeBase> node1 = std::make_unique<NodeA>();
+    std::unique_ptr<Node> node1 = std::make_unique<NodeA>();
     serializeObj(node1, "_4_1.pp");
-    std::unique_ptr<NodeBase> node2 = std::make_unique<NodeB>();
+    std::unique_ptr<Node> node2 = std::make_unique<NodeB>();
     serializeObj(node2, "_4_2.pp");
-    std::unique_ptr<NodeBase> node3 = std::make_unique<NodeC>();
+    std::unique_ptr<Node> node3 = std::make_unique<NodeC>();
     serializeObj(node3, "_4_3.pp");
 
-    std::unique_ptr<NodeBase> node11;
+    std::unique_ptr<Node> node11;
     deserializeObj(node11, "_4_1.pp");
     node11->run();
-    std::unique_ptr<NodeBase> node21;
+    std::unique_ptr<Node> node21;
     deserializeObj(node21, "_4_2.pp");
     node21->run();
-    std::unique_ptr<NodeBase> node31;
+    std::unique_ptr<Node> node31;
     deserializeObj(node31, "_4_3.pp");
     node31->run();
 
@@ -178,5 +193,60 @@ void test5()
     std::shared_ptr<FlowUnit> flowUnit2;
     deserializeObj(flowUnit2, "_5_flowUnit.pp");
     flowUnit2->run();
+
+}
+
+void test_remat()
+{
+    rv::ReMat image("1.bmp");
+
+    //保存
+    serializeObj(image, "image.pp");
+
+    //重新加载
+    rv::ReMat image2;
+    deserializeObj(image2, "image.pp");
+
+    if (!image2.empty())
+    {
+        cv::Mat cvImage = image2.getMat();
+        cv::imshow("", cvImage);
+        cv::waitKey();
+    }
+    else
+    {
+
+    }
+
+}
+
+void test_var()
+{
+    qv::Variant var0;
+    qv::Variant var1(0);
+    qv::Variant var2(0.1);
+    qv::Variant var3("你好");
+    qv::Variant var4(rv::Point<double>(10, 10));
+
+    //保存
+    serializeObj(var0, "_var_0.pp");
+    serializeObj(var1, "_var_1.pp");
+    serializeObj(var2, "_var_2.pp");
+    serializeObj(var3, "_var_3.pp");
+    serializeObj(var4, "_var_4.pp");
+
+    //重新加载
+    qv::Variant _var0;
+    qv::Variant _var1;
+    qv::Variant _var2;
+    qv::Variant _var3;
+    qv::Variant _var4;
+    deserializeObj(_var0, "_var_0.pp");
+    deserializeObj(_var1, "_var_1.pp");
+    deserializeObj(_var2, "_var_2.pp");
+    deserializeObj(_var3, "_var_3.pp");
+    deserializeObj(_var4, "_var_4.pp");
+
+
 
 }

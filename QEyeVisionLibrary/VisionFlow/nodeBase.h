@@ -8,7 +8,7 @@
 #include <boost/serialization/export.hpp>
 
 #include <ReVisionLib/revision.hpp>
-#include "variant.h"
+#include "variant/variant.h"
 
 namespace qv
 {
@@ -86,15 +86,15 @@ namespace qv
         NodeParamDescription inputImage = { "InputImage", u8"图像", Variant::VariantType::Image };
 
         //参考坐标及工作区域
-        Pose2D srcPose;                 //设置region时参考坐标的位姿,进行仿射变换时需要
+        rv::Pose<double> srcPose;       //设置region时参考坐标的位姿,进行仿射变换时需要
         rv::Region region;              //搜索区域,可以根据实际pose进行变换
         bool isEnableRefer = false;     //使能参考点
         bool onlyReferFirst = false;    //仅参考第一个参考点(如果有多个参考点的情况下)
-        void setRegion(const rv::Region& region, const Pose2D& pose = Pose2D());
+        void setRegion(const rv::Region& region, const rv::Pose<double>& pose = rv::Pose<double>());
         NodeParamDescription referPose = { "ReferPose", u8"参考点", Variant::VariantType::Pose, DefaultSource::Null };    //参考点输入输出参数
         virtual void updateReferPose();
-        virtual rv::Region affineTransRegion(const Pose2D& dstPose);
-        virtual rv::Region affineTransRegion(const rv::Region& region, const Pose2D& dstPose);
+        virtual rv::Region affineTransRegion(const rv::Pose<double>& dstPose);
+        virtual rv::Region affineTransRegion(const rv::Region& region, const rv::Pose<double>& dstPose);
 
         //输入输出描述
         std::vector<NodeParamDescription> inputs;
@@ -125,11 +125,19 @@ namespace qv
         template <typename Archive>
         void serialize(Archive& ar, const unsigned int version)
         {
-            ar& isEnable;
-            ar& guid;
-            ar& name;
-            ar& description;
-            ar& nodeID;
+            ar& BOOST_SERIALIZATION_NVP(node.isEnable);
+            ar& BOOST_SERIALIZATION_NVP(node.guid);
+            ar& BOOST_SERIALIZATION_NVP(node.name);
+            ar& BOOST_SERIALIZATION_NVP(node.description);
+            ar& BOOST_SERIALIZATION_NVP(node.nodeID);
+            ar& BOOST_SERIALIZATION_NVP(node.srcPose);
+            ar& BOOST_SERIALIZATION_NVP(node.region);
+            ar& BOOST_SERIALIZATION_NVP(node.isEnableRefer);
+            ar& BOOST_SERIALIZATION_NVP(node.onlyReferFirst);
+            ar& BOOST_SERIALIZATION_NVP(node.inputs);
+            ar& BOOST_SERIALIZATION_NVP(node.outputs);
         }
     };
 }
+
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(qv::NodeBase)

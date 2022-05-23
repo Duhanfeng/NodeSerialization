@@ -4,7 +4,7 @@
 #include <boost/serialization/export.hpp>
 #include <iostream>
 
-class NodeBase
+class Node
 {
 public:
     bool isEnable = true;
@@ -15,7 +15,7 @@ public:
 
     virtual void run() 
     {
-        std::cout << "NodeBase" << std::endl;
+        std::cout << "Node" << std::endl;
     };
 
 private:
@@ -26,6 +26,12 @@ private:
     template <typename Archive>
     void serialize(Archive& ar, const unsigned int version)
     {
+        //ar& BOOST_SERIALIZATION_NVP(isEnable);
+        //ar& BOOST_SERIALIZATION_NVP(guid);
+        //ar& BOOST_SERIALIZATION_NVP(name);
+        //ar& BOOST_SERIALIZATION_NVP(description);
+        //ar& BOOST_SERIALIZATION_NVP(nodeID);
+
         ar& BOOST_SERIALIZATION_NVP(isEnable);
         ar& BOOST_SERIALIZATION_NVP(guid);
         ar& BOOST_SERIALIZATION_NVP(name);
@@ -35,4 +41,4 @@ private:
 
 };
 
-BOOST_SERIALIZATION_ASSUME_ABSTRACT(NodeBase)
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(Node)

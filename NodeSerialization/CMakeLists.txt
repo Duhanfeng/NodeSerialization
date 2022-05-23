@@ -6,6 +6,11 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("NodeSerialization")
 
+include_directories (${CMAKE_SOURCE_DIR})                   # 根目录
+include_directories (${CMAKE_SOURCE_DIR}/ReVisionLib)
+include_directories (${CMAKE_SOURCE_DIR}/QEyeVisionLibrary)
+include_directories (${CMAKE_CURRENT_SOURCE_DIR})           # 当前目录
+
 # 添加boost支持
 if (WIN32)
     include_directories("C:/Program Files/CppLibrary/boost/include/boost-1_75")
@@ -25,6 +30,6 @@ endif()
 link_libraries(${BOOST_SERIALIZATION_LIB})
 
 # 将源代码添加到此项目的可执行文件。
-add_executable (NodeSerialization "main.cpp"  "serialization.h" "nodeBase.h" "node_A.h" "node_B.h" "node_C.h" "flowunit.h")
+add_executable (${PROJECT_NAME} "main.cpp"  "serialization.h" "nodeBase.h" "node_A.h" "node_B.h" "node_C.h" "flowunit.h")
 
 target_link_libraries(${PROJECT_NAME} ReVisionLib QEyeVisionLibrary)

@@ -3,10 +3,10 @@
 #include <iostream>
 #include "nodeBase.h"
 
-class NodeB : public NodeBase
+class NodeB : public Node
 {
 public:
-    NodeB() : NodeBase()
+    NodeB() : Node()
     {
 
     }
@@ -26,7 +26,7 @@ private:
     template <typename Archive>
     void serialize(Archive& ar, const unsigned int version)
     {
-        ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(NodeBase);
+        ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(Node);
 
         ar& BOOST_SERIALIZATION_NVP(valueB);
     }

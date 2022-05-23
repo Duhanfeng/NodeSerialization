@@ -85,7 +85,7 @@ std::string qv::ResultOutputPacket::getVariantString(Variant* var)
 	}
 	case qv::Variant::VariantType::Point:
 	{
-        const std::vector<qv::Point2D>& value = var->getPointArray();
+        std::vector<rv::Point<double>> value = var->getPointArray();
         for (int i = 0; i < (int)value.size(); i++)
 		{
 			varString += getDoubleString(value[i].x) + vectorSeparateChar + getDoubleString(value[i].y);
@@ -98,10 +98,10 @@ std::string qv::ResultOutputPacket::getVariantString(Variant* var)
 	}
 	case qv::Variant::VariantType::Pose:
 	{
-        const std::vector<qv::Pose2D>& value = var->getPoseArray();
+        std::vector<rv::Pose<double>> value = var->getPoseArray();
         for (int i = 0; i < (int)value.size(); i++)
 		{
-			varString += getDoubleString(value[i].point.x) + vectorSeparateChar + getDoubleString(value[i].point.y) + vectorSeparateChar + getDoubleString(value[i].theta);
+			varString += getDoubleString(value[i].center.x) + vectorSeparateChar + getDoubleString(value[i].center.y) + vectorSeparateChar + getDoubleString(value[i].angle);
 			if (i != (int)value.size() - 1)
 			{
 				varString += vectorSeparateChar;

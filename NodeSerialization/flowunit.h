@@ -8,7 +8,7 @@
 class FlowUnit
 {
 public:
-    std::vector<std::unique_ptr<NodeBase>> nodes;
+    std::vector<std::unique_ptr<Node>> nodes;
 
     virtual void run()
     {

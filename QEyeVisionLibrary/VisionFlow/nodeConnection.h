@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "nodeBase.h"
-#include "variant.h"
+#include "variant/variant.h"
 
 namespace qv
 {
