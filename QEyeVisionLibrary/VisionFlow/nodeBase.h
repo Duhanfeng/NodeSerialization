@@ -1,5 +1,5 @@
-﻿
-#pragma once
+﻿#pragma once
+
 #include <iostream>
 #include <string>
 #include <functional>
@@ -27,7 +27,6 @@ namespace qv
         double totalTime = 0;
         RunResult result;       //result和isOk的区别: result代表的是工程级别的异常,而isOk代表视觉处理的结果是否符合预期;
         std::string message;
-        //ResultDrawingInfo drawingInfo;
         RunStatus() : result(RunResult::Accept), message(""){}
         RunStatus(double _time) : totalTime(_time), result(RunResult::Accept), message("") {}
         RunStatus(double _time, RunResult _result, std::string _message) : totalTime(_time),  result(_result), message(_message) {}
@@ -71,7 +70,7 @@ namespace qv
     {
     public:
         NodeBase(void* _parent);
-        ~NodeBase();
+        virtual ~NodeBase();
 
         //节点描述
         bool isEnable = true;
@@ -81,6 +80,8 @@ namespace qv
         int nodeID = -1;
         void* parent = nullptr;
         NodeInfo getInfo();
+        virtual std::string className() { return "Node"; }
+        virtual std::string displayName() { return u8"节点单元"; }
 
         //输入图像
         NodeParamDescription inputImage = { "InputImage", u8"图像", Variant::VariantType::Image };
