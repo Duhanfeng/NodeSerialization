@@ -28,7 +28,7 @@ private:
     {
         ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(NodeBase);
 
-        ar& valueA;
+        ar& BOOST_SERIALIZATION_NVP(valueA);
     }
 
 };
