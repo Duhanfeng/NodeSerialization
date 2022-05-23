@@ -1,10 +1,11 @@
-﻿# CMakeList.txt: NodeSerialization 的 CMake 项目，在此处包括源代码并定义
-# 项目特定的逻辑。
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.8)
 
+project ("QEyeVisionLibrary")
 
-project ("NodeSerialization")
+include_directories (${CMAKE_SOURCE_DIR})                   # 根目录
+include_directories (${CMAKE_SOURCE_DIR}/ReVisionLib)
+include_directories (${CMAKE_CURRENT_SOURCE_DIR})           # 当前目录
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/VisionFlow)
 
 # 添加boost支持
 if (WIN32)
@@ -24,7 +25,9 @@ else()
 endif()
 link_libraries(${BOOST_SERIALIZATION_LIB})
 
-# 将源代码添加到此项目的可执行文件。
-add_executable (${PROJECT_NAME} "main.cpp"  "serialization.h" "nodeBase.h" "node_A.h" "node_B.h" "node_C.h")
+# 视觉框架核心
+file(GLOB_RECURSE qv_frame_src VisionFlow/*.c VisionFlow/*.cpp VisionFlow/*.h VisionFlow/*.hpp)
 
-target_link_libraries(${PROJECT_NAME} ReVisionLib QEyeVisionLibrary)
+# 编译生成
+add_library(${PROJECT_NAME} ${qv_frame_src})
+target_link_libraries(${PROJECT_NAME} ReVisionLib)

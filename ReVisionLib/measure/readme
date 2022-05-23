@@ -1,0 +1,29 @@
+
+1. 通过roratedRect穿过待测量区域,计算边缘点,而确定边缘由两个关键参数确定:
+
+    //卡尺极性
+    enum class CaliperTransition
+    {
+        Positive,   //从黑到白
+        Negative,   //从白到黑
+        All,        //以上两种都可
+    };
+
+    //选择的结果
+    enum class CaliperResultSelection
+    {
+        First,      //第一个点
+        Second,     //第二个点
+        Last,       //最后一个点
+        Max,        //最优点
+        All,        //所有点
+    };
+
+2. 由多个边缘点去拟合直线/圆;
+
+    而halcon中,有以下算法:
+        regression: 标准最小二乘拟合,但是受离群点影响比较大;
+        huber: 加权最小二乘拟合,通过huber算法削弱离群点影响;
+        tukey: 加权最小二乘拟合,通过huber算法削弱离群点影响;
+        drop: 加权最小二乘拟合,通过平顶的方式消除异常值;
+        gauss: 加权最小二乘拟合,基于平均值和标准方差的逼近而减小异常值的影响;
