@@ -38,7 +38,7 @@ namespace rv
             switch (regionType)
             {
             case rv::RegionType::Shape:
-                shapeRegion = std::shared_ptr<ShapeRegion>(new ShapeRegion());
+                shapeRegion = std::make_shared<ShapeRegion>();
                 if (r.shapeRegion != nullptr)
                 {
                     shapeRegion->isFillup = r.shapeRegion->isFillup;
@@ -47,7 +47,7 @@ namespace rv
                 }
                 break;
             case rv::RegionType::Contour:
-                contour = std::shared_ptr<Contour>(new Contour());
+                contour = std::make_shared<Contour>();
                 if (r.contour != nullptr)
                 {
                     contour->contour = r.contour->contour;
@@ -55,7 +55,7 @@ namespace rv
                 }
                 break;
             case rv::RegionType::Runs:
-                runs = std::shared_ptr<Runs>(new Runs());
+                runs = std::make_shared<Runs>();
                 if (r.runs != nullptr)
                 {
                     runs->r = r.runs->r;
@@ -78,15 +78,13 @@ namespace rv
         clear();
         regionType = RegionType::Shape;
 
-        ShapeRegion* shape = new ShapeRegion();
-        shape->type = ShapeType::RotatedRect;
-        shape->shape.rotateRect.center.x = rect.center.x;
-        shape->shape.rotateRect.center.y = rect.center.y;
-        shape->shape.rotateRect.size.width = rect.size.width;
-        shape->shape.rotateRect.size.height = rect.size.height;
-        shape->shape.rotateRect.angle = deg2rad(rect.angle);
-
-        shapeRegion = std::shared_ptr<ShapeRegion>(shape);
+        shapeRegion = std::make_shared<ShapeRegion>();
+        shapeRegion->type = ShapeType::RotatedRect;
+        shapeRegion->shape.rotateRect.center.x = rect.center.x;
+        shapeRegion->shape.rotateRect.center.y = rect.center.y;
+        shapeRegion->shape.rotateRect.size.width = rect.size.width;
+        shapeRegion->shape.rotateRect.size.height = rect.size.height;
+        shapeRegion->shape.rotateRect.angle = deg2rad(rect.angle);
 
     }
 
@@ -141,7 +139,7 @@ namespace rv
         cv::Mat cvMask = mask.getMat();
 
         //游程编码
-        std::shared_ptr<rv::Runs> runs(new rv::Runs());
+        std::shared_ptr<rv::Runs> runs = std::make_shared<Runs>();
         for (int r = 0; r < cvMask.rows; r++)
         {
             uchar* data = cvMask.ptr(r);
@@ -310,7 +308,7 @@ namespace rv
             return std::shared_ptr<Runs>();
         }
 
-        std::shared_ptr<Runs> runs = std::shared_ptr<Runs>(new Runs());
+        std::shared_ptr<rv::Runs> runs = std::make_shared<Runs>();
 
         runs->r.resize(row.Length());
         runs->cb.resize(row.Length());

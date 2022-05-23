@@ -16,6 +16,8 @@
 #include <QEyeVisionLibrary/VisionFlow/variant/variant.h>
 #include <QEyeVisionLibrary/VisionFlow/Serialization/serialization.hpp>
 
+#include "qeyeTest.h"
+
 using namespace std;
 
 void test1();
@@ -37,33 +39,36 @@ void test_var();
 
 int main()
 {
-    //测试基准
-    std::cout << "test1...." << std::endl;
-    test1();
+    ////测试基准
+    //std::cout << "test1...." << std::endl;
+    //test1();
 
-    //测试派生类
-    std::cout << "test2...." << std::endl;
-    test2();
+    ////测试派生类
+    //std::cout << "test2...." << std::endl;
+    //test2();
 
-    //测试智能指针(shared)
-    std::cout << "test3...." << std::endl;
-    test3();
+    ////测试智能指针(shared)
+    //std::cout << "test3...." << std::endl;
+    //test3();
 
-    //测试智能指针(unique)
-    std::cout << "test4...." << std::endl;
-    test4();
+    ////测试智能指针(unique)
+    //std::cout << "test4...." << std::endl;
+    //test4();
 
-    //测试流程单元
-    std::cout << "test5...." << std::endl;
-    test5();
+    ////测试流程单元
+    //std::cout << "test5...." << std::endl;
+    //test5();
 
-    //测试图片序列化
-    std::cout << "test_remat...." << std::endl;
-    test_remat();
+    ////测试图片序列化
+    //std::cout << "test_remat...." << std::endl;
+    //test_remat();
 
-    //测试变量
-    std::cout << "test_var...." << std::endl;
-    test_var();
+    ////测试变量
+    //std::cout << "test_var...." << std::endl;
+    //test_var();
+
+    std::cout << "tesetNode1...." << std::endl;
+    tesetNode1();
     
     std::cout << "test finish" << std::endl;
 

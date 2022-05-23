@@ -125,17 +125,17 @@ namespace qv
         template <typename Archive>
         void serialize(Archive& ar, const unsigned int version)
         {
-            ar& BOOST_SERIALIZATION_NVP(node.isEnable);
-            ar& BOOST_SERIALIZATION_NVP(node.guid);
-            ar& BOOST_SERIALIZATION_NVP(node.name);
-            ar& BOOST_SERIALIZATION_NVP(node.description);
-            ar& BOOST_SERIALIZATION_NVP(node.nodeID);
-            ar& BOOST_SERIALIZATION_NVP(node.srcPose);
-            ar& BOOST_SERIALIZATION_NVP(node.region);
-            ar& BOOST_SERIALIZATION_NVP(node.isEnableRefer);
-            ar& BOOST_SERIALIZATION_NVP(node.onlyReferFirst);
-            ar& BOOST_SERIALIZATION_NVP(node.inputs);
-            ar& BOOST_SERIALIZATION_NVP(node.outputs);
+            ar& BOOST_SERIALIZATION_NVP(isEnable);
+            ar& BOOST_SERIALIZATION_NVP(guid);
+            ar& BOOST_SERIALIZATION_NVP(name);
+            ar& BOOST_SERIALIZATION_NVP(description);
+            ar& BOOST_SERIALIZATION_NVP(nodeID);
+            ar& BOOST_SERIALIZATION_NVP(srcPose);
+            ar& BOOST_SERIALIZATION_NVP(region);
+            ar& BOOST_SERIALIZATION_NVP(isEnableRefer);
+            ar& BOOST_SERIALIZATION_NVP(onlyReferFirst);
+            ar& BOOST_SERIALIZATION_NVP(inputs);
+            ar& BOOST_SERIALIZATION_NVP(outputs);
         }
     };
 }

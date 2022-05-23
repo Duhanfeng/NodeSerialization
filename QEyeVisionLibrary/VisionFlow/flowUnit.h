@@ -2,6 +2,9 @@
 
 #include <ReVisionLib/revision.hpp>
 
+#include <boost/serialization/serialization.hpp>
+#include <boost/serialization/export.hpp>
+
 #include "variant/variant.h"
 #include "nodeBase.h"
 #include "nodeConnection.h"
@@ -56,6 +59,25 @@ namespace qv
         std::map<std::string, bool> m_runResultMap;
         bool checkPrecondition(const std::string& guid);    //判断是否满足当前节点运行的前提条件
         static bool checkIsPreProcessNode(int id);
+
+    private:
+        friend class boost::serialization::access;
+
+        template <typename Archive>
+        void serialize(Archive& ar, const unsigned int version)
+        {
+            ar& BOOST_SERIALIZATION_NVP(isEnable);
+            ar& BOOST_SERIALIZATION_NVP(guid);
+            ar& BOOST_SERIALIZATION_NVP(name);
+            ar& BOOST_SERIALIZATION_NVP(description);
+
+            ar& BOOST_SERIALIZATION_NVP(referImage);
+            ar& BOOST_SERIALIZATION_NVP(connection);
+            ar& BOOST_SERIALIZATION_NVP(outputPacket);
+            ar& BOOST_SERIALIZATION_NVP(nodes);
+
+            recoverNodes(); //恢复节点的连接关系
+        }
 
     };
 

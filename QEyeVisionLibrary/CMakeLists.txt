@@ -29,5 +29,5 @@ link_libraries(${BOOST_SERIALIZATION_LIB})
 file(GLOB_RECURSE qv_frame_src VisionFlow/*.c VisionFlow/*.cpp VisionFlow/*.h VisionFlow/*.hpp)
 
 # 编译生成
-add_library(${PROJECT_NAME} ${qv_frame_src})
+add_library(${PROJECT_NAME} ${qv_frame_src} "QEyeVisionLib.hpp")
 target_link_libraries(${PROJECT_NAME} ReVisionLib)

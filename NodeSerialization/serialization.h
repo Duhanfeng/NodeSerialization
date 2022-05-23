@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 
 #include <fstream>
-#include <boost/archive/binary_iarchive.hpp>    //¶ş½øÖÆĞòÁĞ»¯
-#include <boost/archive/binary_oarchive.hpp>    //¶ş½øÖÆĞòÁĞ»¯
-#include <boost/archive/text_iarchive.hpp>      //ÎÄ±¾ĞòÁĞ»¯
-#include <boost/archive/text_oarchive.hpp>      //ÎÄ±¾ĞòÁĞ»¯
-#include <boost/archive/xml_iarchive.hpp>       //XMLÎÄ±¾ĞòÁĞ»¯
-#include <boost/archive/xml_oarchive.hpp>       //XMLÎÄ±¾ĞòÁĞ»¯
-#include <boost/serialization/vector.hpp>       //ĞòÁĞ»¯STLÈİÆ÷Òªµ¼Èë
-#include <boost/serialization/map.hpp>          //ĞòÁĞ»¯STLÈİÆ÷Òªµ¼Èë
+#include <boost/archive/binary_iarchive.hpp>    //äºŒè¿›åˆ¶åºåˆ—åŒ–
+#include <boost/archive/binary_oarchive.hpp>    //äºŒè¿›åˆ¶åºåˆ—åŒ–
+#include <boost/archive/text_iarchive.hpp>      //æ–‡æœ¬åºåˆ—åŒ–
+#include <boost/archive/text_oarchive.hpp>      //æ–‡æœ¬åºåˆ—åŒ–
+#include <boost/archive/xml_iarchive.hpp>       //XMLæ–‡æœ¬åºåˆ—åŒ–
+#include <boost/archive/xml_oarchive.hpp>       //XMLæ–‡æœ¬åºåˆ—åŒ–
+#include <boost/serialization/vector.hpp>       //åºåˆ—åŒ–STLå®¹å™¨è¦å¯¼å…¥
+#include <boost/serialization/map.hpp>          //åºåˆ—åŒ–STLå®¹å™¨è¦å¯¼å…¥
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/serialization/shared_ptr_helper.hpp>
 #include <boost/serialization/unique_ptr.hpp>
@@ -48,7 +48,7 @@ template<typename _Tp> inline bool deserializeText(_Tp& data, const std::string&
     }
     catch (const std::exception& ex)
     {
-        //Èç¹û·´ĞòÁĞ»¯Ê§°Ü,ÔòÖÃÎªÄ¬ÈÏ,±ÜÃâ³öÏÖÒì³£(ÀıÈç,ÀïÃæµÄ±äÁ¿Ò»°ë·´ĞòÁĞ»¯Ò»°ëÄ¬ÈÏµÄÇé¿ö)
+        //å¦‚æœååºåˆ—åŒ–å¤±è´¥,åˆ™ç½®ä¸ºé»˜è®¤,é¿å…å‡ºç°å¼‚å¸¸(ä¾‹å¦‚,é‡Œé¢çš„å˜é‡ä¸€åŠååºåˆ—åŒ–ä¸€åŠé»˜è®¤çš„æƒ…å†µ)
         data = _Tp();
         std::cout << "deserializeObj: " << ex.what() << std::endl;
     }
@@ -62,7 +62,7 @@ template<typename _Tp> inline bool serializeBin(const _Tp& data, const std::stri
     try
     {
         std::ofstream bs(file);
-        boost::archive::binary_oarchive bo(bs);   //¶ş½øÖÆĞòÁĞ»¯²¢²»¾ß±¸¿çÆ½Ì¨ĞÔ
+        boost::archive::binary_oarchive bo(bs);   //äºŒè¿›åˆ¶åºåˆ—åŒ–å¹¶ä¸å…·å¤‡è·¨å¹³å°æ€§
         bo << data;
         bs.close();
         return true;
@@ -87,7 +87,7 @@ template<typename _Tp> inline bool deserializeBin(_Tp& data, const std::string& 
     }
     catch (const std::exception& ex)
     {
-        //Èç¹û·´ĞòÁĞ»¯Ê§°Ü,ÔòÖÃÎªÄ¬ÈÏ,±ÜÃâ³öÏÖÒì³£(ÀıÈç,ÀïÃæµÄ±äÁ¿Ò»°ë·´ĞòÁĞ»¯Ò»°ëÄ¬ÈÏµÄÇé¿ö)
+        //å¦‚æœååºåˆ—åŒ–å¤±è´¥,åˆ™ç½®ä¸ºé»˜è®¤,é¿å…å‡ºç°å¼‚å¸¸(ä¾‹å¦‚,é‡Œé¢çš„å˜é‡ä¸€åŠååºåˆ—åŒ–ä¸€åŠé»˜è®¤çš„æƒ…å†µ)
         data = _Tp();
         std::cout << "deserializeObj: " << ex.what() << std::endl;
     }
@@ -126,7 +126,7 @@ template<typename _Tp> inline bool deserializeXml(_Tp& data, const std::string& 
     }
     catch (const std::exception& ex)
     {
-        //Èç¹û·´ĞòÁĞ»¯Ê§°Ü,ÔòÖÃÎªÄ¬ÈÏ,±ÜÃâ³öÏÖÒì³£(ÀıÈç,ÀïÃæµÄ±äÁ¿Ò»°ë·´ĞòÁĞ»¯Ò»°ëÄ¬ÈÏµÄÇé¿ö)
+        //å¦‚æœååºåˆ—åŒ–å¤±è´¥,åˆ™ç½®ä¸ºé»˜è®¤,é¿å…å‡ºç°å¼‚å¸¸(ä¾‹å¦‚,é‡Œé¢çš„å˜é‡ä¸€åŠååºåˆ—åŒ–ä¸€åŠé»˜è®¤çš„æƒ…å†µ)
         data = _Tp();
         std::cout << "deserializeObj: " << ex.what() << std::endl;
     }
