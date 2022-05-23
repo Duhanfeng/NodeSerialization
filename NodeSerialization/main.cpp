@@ -16,7 +16,7 @@
 #include <QEyeVisionLibrary/VisionFlow/variant/variant.h>
 #include <QEyeVisionLibrary/VisionFlow/Serialization/serialization.hpp>
 #include <QEyeVisionLibraryNode/Preprocess/smoothness/node.h>
-BOOST_CLASS_EXPORT(qv::SmoothnessNode)
+//BOOST_CLASS_EXPORT(qv::SmoothnessNode)
 
 //#include "qeyeTest.h"
 
@@ -34,11 +34,11 @@ void tesetNode1();
 //#define serializeObj serializeBin
 //#define deserializeObj deserializeBin
 
-//#define serializeObj serializeText
-//#define deserializeObj deserializeText
+#define serializeObj serializeText
+#define deserializeObj deserializeText
 
-#define serializeObj serializeXml
-#define deserializeObj deserializeXml
+//#define serializeObj serializeXml
+//#define deserializeObj deserializeXml
 
 int main()
 {
@@ -263,11 +263,13 @@ void tesetNode1()
 {
     qv::NodeBase* node = new qv::SmoothnessNode();
     node->nodeID = 9999;
+    node->description = "132455513355";
     std::cout << node->nodeID << std::endl;
     std::cout << node->description << std::endl;
-    serializeXml(node, "_node.pp");
+    //node->write("_node.pp");
+    serializeObj(node, "_node.pp");
     qv::NodeBase* node2;
-    deserializeXml(node2, "_node.pp");
+    deserializeObj(node2, "_node.pp");
     std::cout << node2->nodeID << std::endl;
     std::cout << node2->description << std::endl;
     node2->runImage(rv::ReMat(), nullptr);

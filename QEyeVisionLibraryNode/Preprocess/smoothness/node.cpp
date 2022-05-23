@@ -1,9 +1,11 @@
 ﻿#include "node.h"
 #include <opencv2/opencv.hpp>
 #include <VisionFlow/timer.h>
+#include <fstream>
 #include <boost/serialization/export.hpp>
-
-//BOOST_CLASS_EXPORT_IMPLEMENT(qv::SmoothnessNode)
+#include <boost/archive/text_iarchive.hpp>      //文本序列化
+#include <boost/archive/text_oarchive.hpp>      //文本序列化
+#include <QEyeVisionLib.hpp>
 
 using namespace qv;
 
@@ -81,3 +83,5 @@ RunStatus SmoothnessNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow
 
     return runResult;
 }
+
+BOOST_CLASS_EXPORT(qv::SmoothnessNode)

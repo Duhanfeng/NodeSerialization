@@ -60,3 +60,5 @@ RunStatus MorphologyNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow
 
     return runResult;
 }
+
+BOOST_CLASS_EXPORT(qv::MorphologyNode)

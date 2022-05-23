@@ -2,6 +2,8 @@
 
 #include "VisionFlow/nodeBase.h"
 #include <ReVisionLib/revision.hpp>
+#include <boost/serialization/export.hpp>
+#include <boost/serialization/nvp.hpp>
 
 namespace qv
 {
@@ -43,6 +45,3 @@ namespace qv
     };
 
 }
-
-//BOOST_CLASS_EXPORT(qv::SmoothnessNode)
-//BOOST_CLASS_EXPORT_KEY(qv::SmoothnessNode)

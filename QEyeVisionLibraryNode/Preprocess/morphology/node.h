@@ -37,4 +37,3 @@ namespace qv
 
 }
 
-BOOST_CLASS_EXPORT(qv::MorphologyNode)

@@ -6,6 +6,7 @@
 
 #include <boost/serialization/serialization.hpp>
 #include <boost/serialization/export.hpp>
+#include <boost/serialization/nvp.hpp>
 
 #include <ReVisionLib/revision.hpp>
 #include "variant/variant.h"
