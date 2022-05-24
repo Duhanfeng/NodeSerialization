@@ -18,6 +18,16 @@ FindCircleNode::FindCircleNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::FindCircleNode::className() const
+{
+    return "FindCircle";
+}
+
+std::string qv::FindCircleNode::displayName() const
+{
+    return u8"圆查找";
+}
+
 RunStatus FindCircleNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();

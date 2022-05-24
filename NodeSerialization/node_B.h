@@ -11,11 +11,7 @@ public:
 
     }
 
-    virtual void run() override
-    {
-        std::cout << "NodeB" << std::endl;
-    };
-
+    virtual void run() override;
 
 public:
     int valueB = 20;
@@ -33,4 +29,5 @@ private:
 
 };
 
-BOOST_CLASS_EXPORT(NodeB)
+//BOOST_CLASS_EXPORT(NodeB)
+BOOST_CLASS_EXPORT_KEY(NodeB)

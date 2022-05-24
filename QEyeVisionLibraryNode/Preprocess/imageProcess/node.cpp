@@ -18,6 +18,16 @@ ImageProcessNode::ImageProcessNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::ImageProcessNode::className() const
+{
+    return "ImageProcess";
+}
+
+std::string qv::ImageProcessNode::displayName() const
+{
+    return u8"常用预处理";
+}
+
 RunStatus ImageProcessNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();

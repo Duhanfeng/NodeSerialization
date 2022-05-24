@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <boost/serialization/serialization.hpp>
+#include <boost/serialization/nvp.hpp>
 #include <boost/serialization/export.hpp>
 #include <ReVisionLib/revision.hpp>
 #include "variant_base.h"

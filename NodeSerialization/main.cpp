@@ -7,15 +7,16 @@
 #include <boost/serialization/serialization.hpp>
 #include <opencv2/opencv.hpp>
 
+#include <QEyeVisionLibrary/VisionFlow/variant/variant.h>
+#include <QEyeVisionLibrary/VisionFlow/Serialization/serialization.hpp>
+#include <QEyeVisionLibraryNode/Preprocess/smoothness/node.h>
+
 #include "serialization.h"
 #include "nodeBase.h"
 #include "node_A.h"
 #include "node_B.h"
 #include "node_C.h"
 #include "flowunit.h"
-#include <QEyeVisionLibrary/VisionFlow/variant/variant.h>
-#include <QEyeVisionLibrary/VisionFlow/Serialization/serialization.hpp>
-#include <QEyeVisionLibraryNode/Preprocess/smoothness/node.h>
 //BOOST_CLASS_EXPORT(qv::SmoothnessNode)
 
 //#include "qeyeTest.h"
@@ -34,41 +35,41 @@ void tesetNode1();
 //#define serializeObj serializeBin
 //#define deserializeObj deserializeBin
 
-#define serializeObj serializeText
-#define deserializeObj deserializeText
+//#define serializeObj serializeText
+//#define deserializeObj deserializeText
 
-//#define serializeObj serializeXml
-//#define deserializeObj deserializeXml
+#define serializeObj serializeXml
+#define deserializeObj deserializeXml
 
 int main()
 {
     //测试基准
-    //std::cout << "test1...." << std::endl;
-    //test1();
+    std::cout << "test1...." << std::endl;
+    test1();
 
-    ////测试派生类
-    //std::cout << "test2...." << std::endl;
-    //test2();
+    //测试派生类
+    std::cout << "test2...." << std::endl;
+    test2();
 
-    ////测试智能指针(shared)
-    //std::cout << "test3...." << std::endl;
-    //test3();
+    //测试智能指针(shared)
+    std::cout << "test3...." << std::endl;
+    test3();
 
-    ////测试智能指针(unique)
-    //std::cout << "test4...." << std::endl;
-    //test4();
+    //测试智能指针(unique)
+    std::cout << "test4...." << std::endl;
+    test4();
 
-    ////测试流程单元
-    //std::cout << "test5...." << std::endl;
-    //test5();
+    //测试流程单元
+    std::cout << "test5...." << std::endl;
+    test5();
 
-    ////测试图片序列化
-    //std::cout << "test_remat...." << std::endl;
-    //test_remat();
+    //测试图片序列化
+    std::cout << "test_remat...." << std::endl;
+    test_remat();
 
-    ////测试变量
-    //std::cout << "test_var...." << std::endl;
-    //test_var();
+    //测试变量
+    std::cout << "test_var...." << std::endl;
+    test_var();
 
     std::cout << "tesetNode1...." << std::endl;
     tesetNode1();
@@ -80,12 +81,12 @@ int main()
 
 void test1()
 {
-    Node* nodeBase = new Node();
-    nodeBase->nodeID = 1;
-    serializeObj(nodeBase, "_1.pp");
-    Node* nodeBase2 = new Node();
-    deserializeObj(nodeBase2, "_1.pp");
-    cout << nodeBase2->nodeID << endl;
+    //Node* nodeBase = new Node();
+    //nodeBase->nodeID = 1;
+    //serializeObj(nodeBase, "_1.pp");
+    //Node* nodeBase2;
+    //deserializeObj(nodeBase2, "_1.pp");
+    //cout << nodeBase2->nodeID << endl;
 
 }
 
@@ -102,7 +103,7 @@ void test2()
     node3->run();
     serializeObj(node3, "_2_3.pp");
 
-    Node* node11 = new Node();
+    Node* node11;
     deserializeObj(node11, "_2_1.pp");
     if (node11 != nullptr)
     {
@@ -113,7 +114,7 @@ void test2()
         std::cout << "node11 is null" << std::endl;
     }
 
-    Node* node21 = new Node();
+    Node* node21;
     deserializeObj(node21, "_2_2.pp");
     if (node21 != nullptr)
     {
@@ -124,7 +125,7 @@ void test2()
         std::cout << "node21 is null" << std::endl;
     }
 
-    Node* node31 = new Node();
+    Node* node31;
     deserializeObj(node31, "_2_3.pp");
     if (node31 != nullptr)
     {

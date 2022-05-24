@@ -11,11 +11,7 @@ public:
 
     }
 
-    virtual void run() override
-    {
-        std::cout << "NodeA" << std::endl;
-    };
-
+    virtual void run() override;
 
 public:
     int valueA = 20;
@@ -33,4 +29,8 @@ private:
 
 };
 
-BOOST_CLASS_EXPORT(NodeA)
+////BOOST_CLASS_EXPORT(NodeA)
+//#include <boost/serialization/export.hpp>
+//#include <boost/archive/text_iarchive.hpp>
+//#include <boost/archive/text_oarchive.hpp>
+BOOST_CLASS_EXPORT_KEY(NodeA)

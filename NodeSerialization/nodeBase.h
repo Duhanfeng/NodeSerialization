@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include <boost/serialization/serialization.hpp>
-#include <boost/serialization/export.hpp>
 #include <iostream>
 
 class Node
@@ -13,10 +12,7 @@ public:
     std::string description = "";
     int nodeID = -1;
 
-    virtual void run() 
-    {
-        std::cout << "Node" << std::endl;
-    };
+    virtual void run() = 0;
 
 private:
 
@@ -41,4 +37,10 @@ private:
 
 };
 
+#include <boost/serialization/export.hpp>
 BOOST_SERIALIZATION_ASSUME_ABSTRACT(Node)
+BOOST_CLASS_EXPORT_KEY(Node)
+
+//BOOST_CLASS_EXPORT(Node)
+//BOOST_CLASS_EXPORT_KEY(Node)
+//BOOST_SERIALIZATION_ASSUME_ABSTRACT(Node)

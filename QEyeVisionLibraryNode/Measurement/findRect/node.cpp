@@ -18,6 +18,16 @@ FindRectNode::FindRectNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::FindRectNode::className() const
+{
+    return "FindRect";
+}
+
+std::string qv::FindRectNode::displayName() const
+{
+    return u8"矩形查找";
+}
+
 RunStatus FindRectNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();

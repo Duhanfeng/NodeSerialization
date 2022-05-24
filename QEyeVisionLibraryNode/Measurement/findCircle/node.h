@@ -24,6 +24,8 @@ namespace qv
     public:
         FindCircleNode(void* _parent = nullptr);
         virtual RunStatus runImage(rv::InputReMat image, rv::IReWindow* rewindow = nullptr) override;
+        virtual std::string className() const override;
+        virtual std::string displayName() const override;
 
     public:
         //边缘拟合
@@ -49,5 +51,3 @@ namespace qv
     };
 
 }
-
-BOOST_CLASS_EXPORT(qv::FindCircleNode)

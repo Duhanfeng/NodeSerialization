@@ -10,6 +10,8 @@ namespace qv
     public:
         ColorConvertNode(void* _parent = nullptr);
         virtual RunStatus runImage(rv::InputReMat image, rv::IReWindow* rewindow = nullptr) override;
+        virtual std::string className() const override;
+        virtual std::string displayName() const override;
 
     public:
         rv::IPreprocess::ColorConversionCodes code1 = rv::IPreprocess::ColorConversionCodes::BGR2GRAY;
@@ -36,5 +38,3 @@ namespace qv
     };
 
 }
-
-BOOST_CLASS_EXPORT(qv::ColorConvertNode)

@@ -16,6 +16,8 @@ namespace qv
     public:
         ImageProcessNode(void* _parent = nullptr);
         virtual RunStatus runImage(rv::InputReMat image, rv::IReWindow* rewindow = nullptr) override;
+        virtual std::string className() const override;
+        virtual std::string displayName() const override;
 
     public:
         ImageProcessMethod method = ImageProcessMethod::EqualizeHist;
@@ -39,4 +41,3 @@ namespace qv
 
 }
 
-BOOST_CLASS_EXPORT(qv::ImageProcessNode)

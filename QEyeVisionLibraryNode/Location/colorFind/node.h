@@ -21,6 +21,8 @@ namespace qv
     public:
         ColorFindNode(void* _parent = nullptr);
         virtual RunStatus runImage(rv::InputReMat image, rv::IReWindow* rewindow = nullptr) override;
+        virtual std::string className() const override;
+        virtual std::string displayName() const override;
 
     public:
         std::vector<ColorTempl> colorTempls;
@@ -59,5 +61,3 @@ namespace boost
         }
     }
 }
-
-BOOST_CLASS_EXPORT(qv::ColorFindNode)

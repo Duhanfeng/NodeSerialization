@@ -6,6 +6,8 @@
 #include <boost/archive/binary_oarchive.hpp>    //二进制序列化
 #include <boost/serialization/vector.hpp>       //序列化STL容器要导入
 #include <boost/serialization/map.hpp>          //序列化STL容器要导入
+#include <boost/serialization/serialization.hpp>
+#include <boost/serialization/nvp.hpp>
 #include <opencv2/opencv.hpp>
 
 BOOST_SERIALIZATION_SPLIT_FREE(cv::Mat)

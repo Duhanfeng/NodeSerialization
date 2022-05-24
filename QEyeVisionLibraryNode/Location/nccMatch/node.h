@@ -11,6 +11,8 @@ namespace qv
     public:
         NccMatchNode(void* _parent = nullptr);
         virtual RunStatus runImage(rv::InputReMat image, rv::IReWindow* rewindow = nullptr) override;
+        virtual std::string className() const override;
+        virtual std::string displayName() const override;
 
         //模板操作
         bool createTempl(rv::InputReMat image, rv::InputRegion region);

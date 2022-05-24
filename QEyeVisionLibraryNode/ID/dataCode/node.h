@@ -21,6 +21,8 @@ namespace qv
         DataCodeNode(void* _parent = nullptr);
         virtual RunStatus runImage(rv::InputReMat image, rv::IReWindow* rewindow = nullptr) override;
         virtual void dispose() override;
+        virtual std::string className() const override;
+        virtual std::string displayName() const override;
 
     public:
         DataCodeType dataCodeType = DataCodeType::QRCode;
@@ -54,5 +56,3 @@ namespace qv
     };
 
 }
-
-BOOST_CLASS_EXPORT(qv::DataCodeNode)

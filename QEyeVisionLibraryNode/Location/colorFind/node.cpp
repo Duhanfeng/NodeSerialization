@@ -13,6 +13,16 @@ namespace
     }
 }
 
+std::string qv::ColorFindNode::className() const
+{
+    return "ColorFind";
+}
+
+std::string qv::ColorFindNode::displayName() const
+{
+    return u8"颜色查找";
+}
+
 ColorFindNode::ColorFindNode(void* _parent) : NodeBase(_parent)
 {
     name = "ColorFindNode";

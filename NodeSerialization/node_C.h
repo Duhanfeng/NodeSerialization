@@ -11,10 +11,7 @@ public:
 
     }
 
-    virtual void run() override
-    {
-        std::cout << "NodeC" << std::endl;
-    };
+    virtual void run() override;
 
 
 public:
@@ -33,4 +30,5 @@ private:
 
 };
 
-BOOST_CLASS_EXPORT(NodeC)
+//BOOST_CLASS_EXPORT(NodeC)
+BOOST_CLASS_EXPORT_KEY(NodeC)

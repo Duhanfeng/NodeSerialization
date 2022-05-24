@@ -30,6 +30,16 @@ DataCodeNode::DataCodeNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::DataCodeNode::className() const
+{
+    return "DataCode";
+}
+
+std::string qv::DataCodeNode::displayName() const
+{
+    return u8"扫码";
+}
+
 RunStatus DataCodeNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();

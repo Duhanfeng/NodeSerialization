@@ -28,8 +28,8 @@ namespace qv
         int nodeID = -1;
         void* parent = nullptr;
         NodeInfo getInfo();
-        virtual std::string className() { return "Node"; }
-        virtual std::string displayName() { return u8"节点单元"; }
+        virtual std::string className() const { return "Node"; }
+        virtual std::string displayName() const { return u8"节点单元"; }
 
         //输入图像
         NodeParamDescription inputImage = { "InputImage", u8"图像", Variant::VariantType::Image };
@@ -88,9 +88,10 @@ namespace qv
             ar& BOOST_SERIALIZATION_NVP(region);
             ar& BOOST_SERIALIZATION_NVP(isEnableRefer);
             ar& BOOST_SERIALIZATION_NVP(onlyReferFirst);
-            ar& BOOST_SERIALIZATION_NVP(inputs);
-            ar& BOOST_SERIALIZATION_NVP(outputs);
+            //ar& BOOST_SERIALIZATION_NVP(inputs);
+            //ar& BOOST_SERIALIZATION_NVP(outputs);
         }
     };
 }
 
+//BOOST_IS_ABSTRACT(qv::NodeBase)

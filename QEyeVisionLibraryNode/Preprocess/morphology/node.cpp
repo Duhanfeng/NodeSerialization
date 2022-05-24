@@ -18,6 +18,16 @@ MorphologyNode::MorphologyNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::MorphologyNode::className() const
+{
+    return "Morphology";
+}
+
+std::string qv::MorphologyNode::displayName() const
+{
+    return u8"形态学"; 
+}
+
 RunStatus MorphologyNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();
@@ -60,5 +70,3 @@ RunStatus MorphologyNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow
 
     return runResult;
 }
-
-BOOST_CLASS_EXPORT(qv::MorphologyNode)

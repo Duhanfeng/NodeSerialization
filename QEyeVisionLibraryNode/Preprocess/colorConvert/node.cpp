@@ -18,6 +18,16 @@ ColorConvertNode::ColorConvertNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::ColorConvertNode::className() const
+{
+    return "ColorConvert";
+}
+
+std::string qv::ColorConvertNode::displayName() const
+{
+    return u8"颜色转换";
+}
+
 RunStatus ColorConvertNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();

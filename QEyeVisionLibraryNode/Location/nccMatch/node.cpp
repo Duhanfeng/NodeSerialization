@@ -17,6 +17,16 @@ NccMatchNode::NccMatchNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::NccMatchNode::className() const
+{
+    return "NccMatch";
+}
+
+std::string qv::NccMatchNode::displayName() const
+{
+    return u8"灰度匹配";
+}
+
 RunStatus NccMatchNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();

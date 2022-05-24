@@ -23,6 +23,16 @@ SmoothnessNode::SmoothnessNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::SmoothnessNode::className() const
+{
+    return "Smoothness";
+}
+
+std::string qv::SmoothnessNode::displayName() const
+{
+    return u8"图像平滑";
+}
+
 RunStatus SmoothnessNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();
@@ -83,5 +93,3 @@ RunStatus SmoothnessNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow
 
     return runResult;
 }
-
-BOOST_CLASS_EXPORT(qv::SmoothnessNode)

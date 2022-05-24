@@ -14,8 +14,10 @@
 #include <boost/serialization/unique_ptr.hpp>
 #include <boost/serialization/serialization.hpp>
 
+
 #include "node_A.h"
 #include "node_B.h"
+#include "node_C.h"
 
 
 template<typename _Tp> inline bool serializeText(const _Tp& data, const std::string& file)
@@ -102,6 +104,9 @@ template<typename _Tp> inline bool serializeXml(const _Tp& data, const std::stri
     {
         std::ofstream bs(file);
         boost::archive::xml_oarchive bo(bs, boost::archive::no_header);
+        bo.register_type<NodeA>();
+        bo.register_type<NodeB>();
+        bo.register_type<NodeC>();
         bo << BOOST_SERIALIZATION_NVP(data);
         bs.close();
         return true;
@@ -120,6 +125,9 @@ template<typename _Tp> inline bool deserializeXml(_Tp& data, const std::string& 
     {
         std::ifstream bs(file, std::ios_base::in);
         boost::archive::xml_iarchive bi(bs, boost::archive::no_header);
+        bi.register_type<NodeA>();
+        bi.register_type<NodeB>();
+        bi.register_type<NodeC>();
         bi >> BOOST_SERIALIZATION_NVP(data);
         bs.close();
         return true;

@@ -17,6 +17,16 @@ ShapeMatchNode::ShapeMatchNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::ShapeMatchNode::className() const
+{
+    return "ShapeMatch";
+}
+
+std::string qv::ShapeMatchNode::displayName() const
+{
+    return u8"轮廓匹配";
+}
+
 RunStatus ShapeMatchNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();

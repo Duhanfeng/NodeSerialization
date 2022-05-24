@@ -18,6 +18,16 @@ FindLineNode::FindLineNode(void* _parent) : NodeBase(_parent)
 
 }
 
+std::string qv::FindLineNode::className() const
+{
+    return "FindLine";
+}
+
+std::string qv::FindLineNode::displayName() const
+{
+    return u8"直线查找";
+}
+
 RunStatus FindLineNode::runImage(rv::InputReMat image, rv::IReWindow* rewindow)
 {
     runResult = RunStatus();
