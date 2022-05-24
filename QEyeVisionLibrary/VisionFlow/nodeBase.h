@@ -8,7 +8,7 @@
 #include <boost/serialization/export.hpp>
 #include <boost/serialization/nvp.hpp>
 
-#include <ReVisionLib/revision.hpp>
+#include <ReVisionLib/ReVision.hpp>
 #include "variant/variant.h"
 #include "nodeDef.h"
 

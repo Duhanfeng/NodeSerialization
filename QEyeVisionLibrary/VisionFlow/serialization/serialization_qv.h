@@ -8,11 +8,11 @@
 #include <boost/serialization/map.hpp>          //序列化STL容器要导入
 #include <opencv2/opencv.hpp>
 
-#include <ReVisionLib/revision.hpp>
-#include <VisionFlow/variant/variant.h>
-#include <VisionFlow/nodeBase.h>
-#include <VisionFlow/flowUnit.h>
-#include <VisionFlow/variant/variant_geometry.h>
+#include <ReVisionLib/ReVision.hpp>
+#include <QEyeVisionLibrary/VisionFlow/variant/variant.h>
+#include <QEyeVisionLibrary/VisionFlow/nodeBase.h>
+#include <QEyeVisionLibrary/VisionFlow/flowUnit.h>
+#include <QEyeVisionLibrary/VisionFlow/variant/variant_geometry.h>
 
 namespace boost 
 {

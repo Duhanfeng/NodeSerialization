@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <ReVisionLib/revision.hpp>
+#include <ReVisionLib/ReVision.hpp>
 
 namespace qv
 {

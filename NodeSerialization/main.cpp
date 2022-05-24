@@ -75,6 +75,7 @@ int main()
     testFlowUnit();
 
     std::cout << "test finish" << std::endl;
+    cv::destroyAllWindows();
 
 	return 0;
 }

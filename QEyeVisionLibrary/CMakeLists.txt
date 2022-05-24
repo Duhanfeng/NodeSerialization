@@ -3,9 +3,6 @@
 project ("QEyeVisionLibrary")
 
 include_directories (${CMAKE_SOURCE_DIR})                   # 根目录
-include_directories (${CMAKE_SOURCE_DIR}/ReVisionLib)
-include_directories (${CMAKE_CURRENT_SOURCE_DIR})           # 当前目录
-include_directories (${CMAKE_CURRENT_SOURCE_DIR}/VisionFlow)
 
 # 添加boost支持
 if (WIN32)

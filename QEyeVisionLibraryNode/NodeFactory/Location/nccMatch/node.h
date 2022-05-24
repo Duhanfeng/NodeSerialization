@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "VisionFlow/nodeBase.h"
-#include <ReVisionLib/revision.hpp>
+#include <ReVisionLib/ReVision.hpp>
+#include <QEyeVisionLibrary/QEyeVisionLib.hpp>
 #include "nccModelInterface.h"
 
 namespace qv

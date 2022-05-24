@@ -2,7 +2,7 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/uuid/uuid_generators.hpp>
-#include <ReVisionLib/revision.hpp>
+#include <ReVisionLib/ReVision.hpp>
 
 using namespace qv;
 

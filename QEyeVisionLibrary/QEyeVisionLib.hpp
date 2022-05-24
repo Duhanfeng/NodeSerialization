@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <QEyeVisionLibrary/VisionFlow/timer.h>
 #include <QEyeVisionLibrary/VisionFlow/nodeBase.h>
 #include <QEyeVisionLibrary/VisionFlow/flowUnit.h>
 #include <QEyeVisionLibrary/VisionFlow/variant/variant.h>

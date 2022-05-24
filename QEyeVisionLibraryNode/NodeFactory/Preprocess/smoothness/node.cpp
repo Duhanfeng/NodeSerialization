@@ -1,11 +1,5 @@
 ﻿#include "node.h"
 #include <opencv2/opencv.hpp>
-#include <VisionFlow/timer.h>
-#include <fstream>
-#include <boost/serialization/export.hpp>
-#include <boost/archive/text_iarchive.hpp>      //文本序列化
-#include <boost/archive/text_oarchive.hpp>      //文本序列化
-#include <QEyeVisionLib.hpp>
 
 using namespace qv;
 

@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "VisionFlow/nodeBase.h"
-#include <ReVisionLib/revision.hpp>
 #include <opencv2/opencv.hpp>
+#include <ReVisionLib/ReVision.hpp>
+#include <QEyeVisionLibrary/QEyeVisionLib.hpp>
 #include "wechat_qrcode/include/opencv2/wechat_qrcode.hpp"
 
 namespace qv

@@ -6,8 +6,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories (${CMAKE_SOURCE_DIR})                   # 根目录
-include_directories (${CMAKE_SOURCE_DIR}/ReVisionLib)
-include_directories (${CMAKE_SOURCE_DIR}/QEyeVisionLibrary)
 
 # 添加boost支持
 if (WIN32)

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <ReVisionLib/revision.hpp>
+#include <ReVisionLib/ReVision.hpp>
 
 #include <boost/serialization/serialization.hpp>
 #include <boost/serialization/export.hpp>

@@ -5,7 +5,7 @@
 #include <boost/serialization/serialization.hpp>
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/export.hpp>
-#include <ReVisionLib/revision.hpp>
+#include <ReVisionLib/ReVision.hpp>
 #include "variant_base.h"
 #include "variant_geometry.h"
 

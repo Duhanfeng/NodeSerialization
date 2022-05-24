@@ -9,7 +9,7 @@
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/serialization/shared_ptr_helper.hpp>
 #include <opencv2/opencv.hpp>
-#include <ReVisionLib/revision.hpp>
+#include <ReVisionLib/ReVision.hpp>
 
 BOOST_SERIALIZATION_SPLIT_FREE(::rv::ReMat)
 

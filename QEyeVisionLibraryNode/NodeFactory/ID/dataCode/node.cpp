@@ -1,7 +1,6 @@
 ﻿#include "node.h"
 #include <zbar.h>  
 #include <opencv2/opencv.hpp>
-#include <VisionFlow/timer.h>
 
 using namespace qv;
 
