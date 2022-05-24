@@ -372,12 +372,9 @@ cv::Mat rv::ReMat::getMat() const
             rgbMat[2] = m_r;
 
             //将离散通道组成混合通道(opencv格式),为避免每次调用这个方法都计算一次,将计算结果作为缓存保存在_src之中
-            cv::Mat& colorImage = const_cast<cv::Mat&>(m_cvMat);
-            cv::merge(rgbMat, colorImage);
+            cv::merge(rgbMat, const_cast<rv::ReMat*>(this)->m_cvMat);
 
             const_cast<bool&>(m_needMerge) = false;
-
-            return colorImage;
         }
 
         return m_cvMat;

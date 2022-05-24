@@ -15,6 +15,8 @@ BOOST_SERIALIZATION_SPLIT_FREE(cv::Mat)
 namespace boost {
     namespace serialization {
 
+#if 1
+
         template<class Archive>
         void save(Archive& ar, const cv::Mat& m, const unsigned int version)
         {
@@ -30,6 +32,7 @@ namespace boost {
 
             const size_t data_size = m.cols * m.rows * elem_size;
             ar& boost::serialization::make_array(m.ptr(), data_size);
+            //ar& boost::serialization::make_binary_object(m.ptr(), data_size);
         }
 
         template <class Archive>
@@ -49,7 +52,51 @@ namespace boost {
 
             size_t data_size = m.cols * m.rows * elem_size;
             ar& boost::serialization::make_array(m.ptr(), data_size);
+            //ar& boost::serialization::make_binary_object(m.ptr(), data_size);
         }
+
+#else   
+        template<class Archive>
+        void serialize(Archive& ar, cv::Mat& mat, const unsigned int)
+        {
+            int cols, rows, type;
+            bool continuous;
+
+            if (Archive::is_saving::value) 
+            {
+                cols = mat.cols; rows = mat.rows; type = mat.type();
+                continuous = mat.isContinuous();
+            }
+
+            ar& BOOST_SERIALIZATION_NVP(cols);
+            ar& BOOST_SERIALIZATION_NVP(rows);
+            ar& BOOST_SERIALIZATION_NVP(type);
+            ar& BOOST_SERIALIZATION_NVP(continuous);
+
+            //ar& cols& rows& type& continuous;
+
+            if (Archive::is_loading::value)
+            {
+                mat.create(rows, cols, type);
+            }
+
+            if (continuous) 
+            {
+                const unsigned int data_size = rows * cols * mat.elemSize();
+                ar& boost::serialization::make_array(mat.ptr(), data_size);
+            }
+            else 
+            {
+                const unsigned int row_size = cols * mat.elemSize();
+                for (int i = 0; i < rows; i++) 
+                {
+                    ar& boost::serialization::make_array(mat.ptr(i), row_size);
+                }
+            }
+
+        }
+
+#endif // 0
 
         template <class Archive, typename _Tp>
         void serialize(Archive& ar, cv::Point_<_Tp>& point, const unsigned int version)

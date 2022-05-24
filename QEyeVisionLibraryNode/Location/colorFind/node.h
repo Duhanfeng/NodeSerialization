@@ -14,6 +14,15 @@ namespace qv
         ColorTempl(){}
         ColorTempl(const cv::Point3_<uchar>& _hsv, double _distance): hsv(_hsv) , distance(_distance)
         {}
+    private:
+        friend class boost::serialization::access;
+
+        template <typename Archive>
+        void serialize(Archive& ar, const unsigned int version)
+        {
+            ar& BOOST_SERIALIZATION_NVP(hsv);
+            ar& BOOST_SERIALIZATION_NVP(distance);
+        }
     };
 
     class ColorFindNode : public NodeBase
@@ -48,16 +57,16 @@ namespace qv
     };
 
 }
-
-namespace boost
-{
-    namespace serialization
-    {
-        template <class Archive, typename _Tp>
-        void serialize(Archive& ar, ::qv::ColorTempl& data, const unsigned int version)
-        {
-            ar& BOOST_SERIALIZATION_NVP(data.hsv);
-            ar& BOOST_SERIALIZATION_NVP(data.distance);
-        }
-    }
-}
+//
+//namespace boost
+//{
+//    namespace serialization
+//    {
+//        template <class Archive, typename _Tp>
+//        void serialize(Archive& ar, ::qv::ColorTempl& data, const unsigned int version)
+//        {
+//            ar& BOOST_SERIALIZATION_NVP(data.hsv);
+//            ar& BOOST_SERIALIZATION_NVP(data.distance);
+//        }
+//    }
+//}

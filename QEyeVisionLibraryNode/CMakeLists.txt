@@ -2,6 +2,9 @@
 
 project ("QEyeVisionLibraryNode")
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 include_directories (${CMAKE_SOURCE_DIR})                   # 根目录
 include_directories (${CMAKE_SOURCE_DIR}/ReVisionLib)
 include_directories (${CMAKE_SOURCE_DIR}/QEyeVisionLibrary)
@@ -40,8 +43,12 @@ set(node_src
     Location/colorFind/node.cpp
     Location/nccMatch/node.h
     Location/nccMatch/node.cpp
+    Location/nccMatch/nccModelInterface.h
+    Location/nccMatch/nccModelInterface.cpp
     Location/shapeMatch/node.h
     Location/shapeMatch/node.cpp
+    Location/shapeMatch/shapeModelInterface.h
+    Location/shapeMatch/shapeModelInterface.cpp
 
     Measurement/findCircle/node.h
     Measurement/findCircle/node.cpp
@@ -52,9 +59,12 @@ set(node_src
 
 )
 
-# 包含子项目。
+# 包含子项目(由于DataCode包含的文件比较多,单独打包)
 add_subdirectory ("ID/dataCode")
 
+# 应用,启动界面
+file(GLOB lib_src *.cpp *.h *.hpp)
+
 # 编译生成
-add_library(${PROJECT_NAME} ${node_src})
+add_library(${PROJECT_NAME} ${lib_src} ${node_src})
 target_link_libraries(${PROJECT_NAME} QEyeVisionLibrary DataCodeNode)

@@ -11,6 +11,10 @@ include_directories (${CMAKE_SOURCE_DIR}/ReVisionLib)
 include_directories (${CMAKE_SOURCE_DIR}/QEyeVisionLibrary)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR})           # 当前目录
 
+if(WIN32)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
+endif()
+
 # 添加boost支持
 if (WIN32)
     include_directories("C:/Program Files/CppLibrary/boost/include/boost-1_75")

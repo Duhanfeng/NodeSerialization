@@ -71,10 +71,10 @@ namespace qv
             ar& BOOST_SERIALIZATION_NVP(name);
             ar& BOOST_SERIALIZATION_NVP(description);
 
-            ar& BOOST_SERIALIZATION_NVP(referImage);
             ar& BOOST_SERIALIZATION_NVP(connection);
             ar& BOOST_SERIALIZATION_NVP(outputPacket);
             ar& BOOST_SERIALIZATION_NVP(nodes);
+            ar& BOOST_SERIALIZATION_NVP(referImage);
 
             recoverNodes(); //恢复节点的连接关系
         }

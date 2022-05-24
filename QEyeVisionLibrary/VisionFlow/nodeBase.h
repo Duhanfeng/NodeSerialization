@@ -28,6 +28,9 @@ namespace qv
         int nodeID = -1;
         void* parent = nullptr;
         NodeInfo getInfo();
+
+        //节点特征(由派生类本身决定)
+        //virtual std::string description() const { return "Node"; }
         virtual std::string className() const { return "Node"; }
         virtual std::string displayName() const { return u8"节点单元"; }
 

@@ -45,4 +45,4 @@ namespace qv
 
 }
 
-BOOST_CLASS_EXPORT(qv::ThresholdNode)
+//BOOST_CLASS_EXPORT(qv::ThresholdNode)

@@ -63,9 +63,9 @@ template<typename _Tp> inline bool serializeBin(const _Tp& data, const std::stri
 {
     try
     {
-        std::ofstream bs(file);
-        boost::archive::binary_oarchive bo(bs);   //二进制序列化并不具备跨平台性
-        bo << data;
+        std::ofstream bs(file, std::ios_base::out | std::ios_base::binary);
+        boost::archive::binary_oarchive bo(bs);     //二进制序列化并不具备跨平台性
+        bo << BOOST_SERIALIZATION_NVP(data);
         bs.close();
         return true;
     }
@@ -83,7 +83,7 @@ template<typename _Tp> inline bool deserializeBin(_Tp& data, const std::string& 
     {
         std::ifstream bs(file, std::ios_base::in | std::ios_base::binary);
         boost::archive::binary_iarchive bi(bs);
-        bi >> data;
+        bi >> BOOST_SERIALIZATION_NVP(data);
         bs.close();
         return true;
     }
