@@ -4,8 +4,7 @@
 #include <boost/serialization/serialization.hpp>
 #include <opencv2/opencv.hpp>
 
-#include <QEyeVisionLibrary/VisionFlow/variant/variant.h>
-#include <QEyeVisionLibrary/VisionFlow/Serialization/serialization.hpp>
+#include <QEyeVisionLibrary/QEyeVisionLib.hpp>
 #include <QEyeVisionLibraryNode/QEyeVisionLibraryNode.hpp>
 
 #include "serialization.h"

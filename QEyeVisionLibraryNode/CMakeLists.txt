@@ -28,43 +28,43 @@ endif()
 link_libraries(${BOOST_SERIALIZATION_LIB})
 
 set(node_src
-    Preprocess/threshold/node.h
-    Preprocess/threshold/node.cpp
-    Preprocess/smoothness/node.h
-    Preprocess/smoothness/node.cpp
-    Preprocess/morphology/node.h
-    Preprocess/morphology/node.cpp
-    Preprocess/imageProcess/node.h
-    Preprocess/imageProcess/node.cpp
-    Preprocess/colorConvert/node.h
-    Preprocess/colorConvert/node.cpp
+    NodeFactory/Preprocess/threshold/node.h
+    NodeFactory/Preprocess/threshold/node.cpp
+    NodeFactory/Preprocess/smoothness/node.h
+    NodeFactory/Preprocess/smoothness/node.cpp
+    NodeFactory/Preprocess/morphology/node.h
+    NodeFactory/Preprocess/morphology/node.cpp
+    NodeFactory/Preprocess/imageProcess/node.h
+    NodeFactory/Preprocess/imageProcess/node.cpp
+    NodeFactory/Preprocess/colorConvert/node.h
+    NodeFactory/Preprocess/colorConvert/node.cpp
 
-    Location/colorFind/node.h
-    Location/colorFind/node.cpp
-    Location/nccMatch/node.h
-    Location/nccMatch/node.cpp
-    Location/nccMatch/nccModelInterface.h
-    Location/nccMatch/nccModelInterface.cpp
-    Location/shapeMatch/node.h
-    Location/shapeMatch/node.cpp
-    Location/shapeMatch/shapeModelInterface.h
-    Location/shapeMatch/shapeModelInterface.cpp
+    NodeFactory/Location/colorFind/node.h
+    NodeFactory/Location/colorFind/node.cpp
+    NodeFactory/Location/nccMatch/node.h
+    NodeFactory/Location/nccMatch/node.cpp
+    NodeFactory/Location/nccMatch/nccModelInterface.h
+    NodeFactory/Location/nccMatch/nccModelInterface.cpp
+    NodeFactory/Location/shapeMatch/node.h
+    NodeFactory/Location/shapeMatch/node.cpp
+    NodeFactory/Location/shapeMatch/shapeModelInterface.h
+    NodeFactory/Location/shapeMatch/shapeModelInterface.cpp
 
-    Measurement/findCircle/node.h
-    Measurement/findCircle/node.cpp
-    Measurement/findLine/node.h
-    Measurement/findLine/node.cpp
-    Measurement/findRect/node.h
-    Measurement/findRect/node.cpp
+    NodeFactory/Measurement/findCircle/node.h
+    NodeFactory/Measurement/findCircle/node.cpp
+    NodeFactory/Measurement/findLine/node.h
+    NodeFactory/Measurement/findLine/node.cpp
+    NodeFactory/Measurement/findRect/node.h
+    NodeFactory/Measurement/findRect/node.cpp
 
 )
 
 # 包含子项目(由于DataCode包含的文件比较多,单独打包)
-add_subdirectory ("ID/dataCode")
+add_subdirectory ("NodeFactory/ID/dataCode")
 
 # 应用,启动界面
-file(GLOB lib_src *.cpp *.h *.hpp)
+file(GLOB lib_src NodeFactory/*.cpp NodeFactory/*.h NodeFactory/*.hpp)
 
 # 编译生成
-add_library(${PROJECT_NAME} ${lib_src} ${node_src})
+add_library(${PROJECT_NAME} ${lib_src} ${node_src} "QEyeVisionLibraryNode.hpp")
 target_link_libraries(${PROJECT_NAME} QEyeVisionLibrary DataCodeNode)

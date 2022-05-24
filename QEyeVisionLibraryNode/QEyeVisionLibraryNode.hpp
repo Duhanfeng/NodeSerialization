@@ -1,4 +1,4 @@
 #pragma once
 
-#include "nodeFactory.h"
-#include "serialization.h"
+#include <QEyeVisionLibraryNode/NodeFactory/nodeFactory.h>
+#include <QEyeVisionLibraryNode/NodeFactory/serialization.h>
